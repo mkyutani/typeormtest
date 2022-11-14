@@ -1,5 +1,7 @@
 import { Column, PrimaryGeneratedColumn, Entity, Index, Unique, JoinColumn, OneToMany, ManyToOne } from 'typeorm';
 import { ServicePath } from './ServicePath';
+import { PointDataset } from './PointDataset';
+import { SurfaceDataset } from './SurfaceDataset';
 
 @Index('t_category_pkey', ['id'], { unique: true })
 @Entity('t_category', { orderBy: { displayOrder: 'ASC' } })
@@ -22,5 +24,11 @@ export class Category {
   @ManyToOne(() => ServicePath, (servicePath) => servicePath.categories, { nullable: false })
   @JoinColumn({ name: 'service_path' })
   servicePath: ServicePath;
+
+  @OneToMany(() => PointDataset, (pointDataset) => pointDataset.category)
+  pointDatasets: PointDataset[];
+
+  @OneToMany(() => SurfaceDataset, (surfaceDataset) => surfaceDataset.category)
+  surfaceDatasets: SurfaceDataset[];
 
 }
