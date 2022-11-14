@@ -7,7 +7,7 @@ import { Category } from "./entity/Category"
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: "localhost",
-    port: 5432,
+    port: 5434,
     username: "test",
     password: "test",
     database: "test",
